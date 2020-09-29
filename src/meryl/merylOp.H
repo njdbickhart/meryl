@@ -53,6 +53,7 @@ enum merylOp {
   opUnionMin,
   opUnionMax,
   opUnionSum,
+  opVenn,
 
   opIntersect,
   opIntersectMin,
@@ -272,6 +273,7 @@ private:
   uint32                         _actLen   = 0;
   kmvalu                        *_actCount = nullptr;
   uint32                        *_actIndex = nullptr;
+  
 
   kmer                           _kmer;
   kmvalu                         _value = 0;

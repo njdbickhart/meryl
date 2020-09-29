@@ -368,6 +368,9 @@ merylCommandBuilder::processOperation(void) {
   else if (0 == strcmp(_optString, "union-min"))              non = opUnionMin;
   else if (0 == strcmp(_optString, "union-max"))              non = opUnionMax;
   else if (0 == strcmp(_optString, "union-sum"))              non = opUnionSum;
+  
+  // New utility command
+  else if (0 == strcmp(_optString, "venn"))                   non = opVenn;
 
   else if (0 == strcmp(_optString, "intersect"))              non = opIntersect;
   else if (0 == strcmp(_optString, "intersect-min"))          non = opIntersectMin;

@@ -322,6 +322,7 @@ toString(merylOp op) {
     case opUnionMin:             return("opUnionMin");             break;
     case opUnionMax:             return("opUnionMax");             break;
     case opUnionSum:             return("opUnionSum");             break;
+    case opVenn:                 return("opVenn");                 break;
 
     case opIntersect:            return("opIntersect");            break;
     case opIntersectMin:         return("opIntersectMin");         break;

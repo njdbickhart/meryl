@@ -21,6 +21,14 @@
 
 
 void
+merylOperation::getFString(void){
+    _value = 0; // We are setting bit flags to report the intersection of files
+    for (uint32 ii=1; ii < _actLen; ii++)
+        if (_actCount[ii] > 0)
+            _value |= ii ;
+}
+
+void
 merylOperation::findMinCount(void) {
   _value = _actCount[0];
   for (uint32 ii=1; ii<_actLen; ii++)
@@ -312,7 +320,8 @@ merylOperation::nextMer_findSmallestMultiSet(void) {
     if ((_operation == opUnion) ||
         (_operation == opUnionMin) ||
         (_operation == opUnionMax) ||
-        (_operation == opUnionSum)) {
+        (_operation == opUnionSum) ||
+        (_operation == opVenn)) {
       if (((_actLen == 0)) ||
           ((_inputs[ii]->_kmer  < _kmer)) ||
           ((_inputs[ii]->_kmer == _kmer) && (_inputs[ii]->_value < _actCount[0]))) {
@@ -358,7 +367,8 @@ merylOperation::nextMer_findSmallestMultiSet(void) {
     if ((_operation == opUnion) ||
         (_operation == opUnionMin) ||
         (_operation == opUnionMax) ||
-        (_operation == opUnionSum)) {
+        (_operation == opUnionSum) ||
+        (_operation == opVenn)) {
       if (((_actLen == 0)) ||
           ((_inputs[ii]->_kmer  < _kmer)) ||
           ((_inputs[ii]->_kmer == _kmer) && (_inputs[ii]->_value < _actCount[0]))) {
@@ -407,6 +417,10 @@ merylOperation::nextMer_finish(void) {
 
   if (_operation == opStatistics)
     reportStatistics();
+  
+  // Hiding for now in case I need to implement something different later
+  //if (_operation == opVenn)
+  //    reportVenn();
 
   delete _writer;
   _writer = NULL;
@@ -572,6 +586,10 @@ merylOperation::nextMer(void) {
     case opUnionSum:                        //  Union, sum all counts
       findSumCount();
       break;
+      
+      case opVenn:                          // Venn, we need a list of file kmers
+          getFString();
+          break;
 
     case opIntersect:                       //  Intersect
       if (_actLen == _inputs.size())
