@@ -25,7 +25,7 @@ merylOperation::getFString(void){
     _value = 0; // We are setting bit flags to report the intersection of files
     for (uint32 ii=1; ii < _actLen; ii++)
         if (_actCount[ii] > 0)
-            _value |= ii ;
+            _value = _value | ( 1 << _actIndex[ii]);
 }
 
 void
