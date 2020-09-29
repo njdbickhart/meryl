@@ -234,6 +234,7 @@ public:
 private:
   void    findMinCount(void);
   void    findMaxCount(void);
+  void    getFString(void);
   void    findSumCount(void);
   void    subtractCount(void);
 
